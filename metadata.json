@@ -1,0 +1,6 @@
+{
+  "name": "Lanka Travellers - Ceylon Journeys",
+  "description": "Curated Sri Lanka tours, bespoke Ceylon expeditions, culture, wildlife, hill country escapes, and custom AI itinerary planning.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
