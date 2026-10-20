@@ -1,6 +1,6 @@
 {
   "name": "Lanka Travellers - Ceylon Journeys",
-  "description": "Curated Sri Lanka tours, bespoke Ceylon expeditions, culture, wildlife, hill country escapes, and custom AI itinerary planning.",
+  "description": "Bespoke Sri Lanka destination management agency offering certified private tours, luxury tea estate retreats, wildlife safaris, and custom itinerary planning.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

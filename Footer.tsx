@@ -1,215 +1,241 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export const Footer: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
+interface FooterProps {
+  onNavigate: (view: string, params?: any) => void;
+}
 
-  const handleSubscribe = (e: React.FormEvent) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const handleLink = (view: string, e: React.MouseEvent) => {
     e.preventDefault();
-    if (email) {
-      setSubscribed(true);
-      setTimeout(() => {
-        setSubscribed(false);
-        setEmail('');
-      }, 5000);
-    }
+    onNavigate(view);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="w-full bg-[#fbf2f0] border-t border-[#efe6e4] mt-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* Column 1: Brand & Bio */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-[#002217] flex items-center justify-center text-[#95f8a7]">
-                <span className="material-symbols-outlined text-2xl">temple_buddhist</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-2xl font-bold text-[#002217] tracking-tight leading-none">
-                  Lanka Travellers
-                </span>
-                <span className="text-[11px] text-[#414844] tracking-widest uppercase font-semibold mt-0.5">
-                  Ceylon Journeys
-                </span>
-              </div>
+    <footer className="w-full bg-[#ecf6ef] text-[#151d1a] pt-10 pb-6 border-t border-[#c0c9c3]/30">
+      <div className="max-w-[1280px] mx-auto px-5 md:px-8 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10">
+          {/* Column 1: Brand & Credentials */}
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <span className="font-headline-sm text-[1.35rem] text-[#003628] font-bold tracking-tight">
+                Lanka Travellers
+              </span>
             </div>
-
-            <p className="text-xs sm:text-sm text-[#414844] leading-relaxed">
-              Curating bespoke, luxury, and cultural expeditions across the pearl of the Indian Ocean. Experience authentic Ceylon with seasoned local chauffeurs and nature naturalists.
+            <p className="text-sm text-[#404944] leading-relaxed">
+              Curating conscious, high-touch journeys through Sri Lanka's emerald highlands, ancient fortresses, and coastal sanctuaries inspired by Geoffrey Bawa's timeless architectural ethos.
             </p>
-
-            <div className="flex items-center gap-2 pt-2">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Facebook"
-                className="w-9 h-9 rounded-full bg-[#f5ecea] hover:bg-[#002217] text-[#1e1b1a] hover:text-white flex items-center justify-center transition-colors shadow-xs"
-              >
-                <span className="material-symbols-outlined text-sm">public</span>
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
-                className="w-9 h-9 rounded-full bg-[#f5ecea] hover:bg-[#002217] text-[#1e1b1a] hover:text-white flex items-center justify-center transition-colors shadow-xs"
-              >
-                <span className="material-symbols-outlined text-sm">photo_camera</span>
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="YouTube"
-                className="w-9 h-9 rounded-full bg-[#f5ecea] hover:bg-[#002217] text-[#1e1b1a] hover:text-white flex items-center justify-center transition-colors shadow-xs"
-              >
-                <span className="material-symbols-outlined text-sm">smart_display</span>
-              </a>
+            <div className="flex flex-col gap-2 pt-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#e6f0ea] rounded-lg text-xs font-bold text-[#003628] border border-[#b6eed7]/50">
+                <span className="material-symbols-outlined text-[16px]">verified_user</span>
+                <span>SLTDA Certified: #SLTDA/SQA/TA/01482</span>
+              </div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#e6f0ea] rounded-lg text-xs font-semibold text-[#404944]">
+                <span className="material-symbols-outlined text-[16px] text-[#004e47]">eco</span>
+                <span>Zero Carbon & Heritage Pledge</span>
+              </div>
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div className="lg:col-span-2 flex flex-col gap-3">
-            <h4 className="font-sans text-sm font-bold text-[#002217] uppercase tracking-wider">
-              Quick Links
-            </h4>
-            <ul className="flex flex-col gap-2 text-xs sm:text-sm text-[#414844]">
-              <li>
-                <a href="#home" className="hover:text-[#002217] transition-colors">
-                  Home
+          {/* Column 2: Popular Tours */}
+          <div className="flex flex-col gap-4">
+            <h3 className="font-headline-sm text-lg text-[#003628] font-semibold">
+              Popular Tours
+            </h3>
+            <ul className="flex flex-col gap-2.5 text-sm">
+              <li className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[14px] text-[#003628]">chevron_right</span>
+                <a
+                  href="#travel-packages"
+                  onClick={(e) => handleLink('travel-packages', e)}
+                  className="text-[#404944] hover:text-[#003628] transition-colors"
+                >
+                  Sigiriya & Cultural Triangle
                 </a>
               </li>
-              <li>
-                <a href="#destinations" className="hover:text-[#002217] transition-colors">
-                  Destinations
+              <li className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[14px] text-[#003628]">chevron_right</span>
+                <a
+                  href="#travel-packages"
+                  onClick={(e) => handleLink('travel-packages', e)}
+                  className="text-[#404944] hover:text-[#003628] transition-colors"
+                >
+                  Ella & Hill Country Adventure
                 </a>
               </li>
-              <li>
-                <a href="#packages" className="hover:text-[#002217] transition-colors">
-                  Tour Packages
+              <li className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[14px] text-[#003628]">chevron_right</span>
+                <a
+                  href="#travel-packages"
+                  onClick={(e) => handleLink('travel-packages', e)}
+                  className="text-[#404944] hover:text-[#003628] transition-colors"
+                >
+                  Southern Coast Safari & Beaches
                 </a>
               </li>
-              <li>
-                <a href="#about" className="hover:text-[#002217] transition-colors">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="hover:text-[#002217] transition-colors">
-                  Contact Us
+              <li className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[14px] text-[#003628]">chevron_right</span>
+                <a
+                  href="#travel-packages"
+                  onClick={(e) => handleLink('travel-packages', e)}
+                  className="text-[#404944] hover:text-[#003628] transition-colors"
+                >
+                  Ceylon Tea Trails & Wildlife
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Colombo Office */}
-          <div className="lg:col-span-3 flex flex-col gap-3">
-            <h4 className="font-sans text-sm font-bold text-[#002217] uppercase tracking-wider">
-              Colombo Office
-            </h4>
-            <div className="flex flex-col gap-2.5 text-xs sm:text-sm text-[#414844]">
-              <div className="flex items-start gap-2">
-                <span className="material-symbols-outlined text-base text-[#002217] mt-0.5 shrink-0">
-                  location_on
-                </span>
-                <span>45 Galle Road, Colombo 03, Sri Lanka</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-base text-[#002217] shrink-0">
-                  call
-                </span>
-                <a href="tel:+94771234567" className="hover:text-[#002217] transition-colors">
-                  +94 77 123 4567
+          {/* Column 3: Quick Links */}
+          <div className="flex flex-col gap-4">
+            <h3 className="font-headline-sm text-lg text-[#003628] font-semibold">
+              Quick Links
+            </h3>
+            <ul className="flex flex-col gap-2 text-sm">
+              <li>
+                <a
+                  href="#about-us"
+                  onClick={(e) => handleLink('about-us', e)}
+                  className="text-[#404944] hover:text-[#003628] transition-colors"
+                >
+                  About Us
                 </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-base text-[#002217] shrink-0">
-                  mail
-                </span>
-                <a href="mailto:info@lankatravellers.com" className="hover:text-[#002217] transition-colors">
-                  info@lankatravellers.com
+              </li>
+              <li>
+                <a
+                  href="#plan-custom-trip"
+                  onClick={(e) => handleLink('plan-custom-trip', e)}
+                  className="text-[#404944] hover:text-[#003628] transition-colors"
+                >
+                  Custom Itinerary Planning
                 </a>
-              </div>
-              <div className="flex items-center gap-2 text-[#006d30] font-semibold">
-                <span className="material-symbols-outlined text-base shrink-0">
-                  support_agent
-                </span>
-                <span>24/7 Concierge Support</span>
-              </div>
-            </div>
+              </li>
+              <li>
+                <a
+                  href="#about-us"
+                  onClick={(e) => handleLink('about-us', e)}
+                  className="text-[#404944] hover:text-[#003628] transition-colors"
+                >
+                  Responsible Travel Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact-us"
+                  onClick={(e) => handleLink('contact-us', e)}
+                  className="text-[#404944] hover:text-[#003628] transition-colors"
+                >
+                  Frequently Asked Questions
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact-us"
+                  onClick={(e) => handleLink('contact-us', e)}
+                  className="text-[#404944] hover:text-[#003628] transition-colors"
+                >
+                  Traveler Safety Guarantee
+                </a>
+              </li>
+            </ul>
           </div>
 
-          {/* Column 4: Newsletter */}
-          <div className="lg:col-span-3 flex flex-col gap-3">
-            <h4 className="font-sans text-sm font-bold text-[#002217] uppercase tracking-wider">
-              Travel Newsletter
-            </h4>
-            <p className="text-xs text-[#414844] leading-relaxed">
-              Get curated itineraries, seasonal wildlife updates, and exclusive safari packages in your inbox.
-            </p>
+          {/* Column 4: Headquarters */}
+          <div className="flex flex-col gap-4">
+            <h3 className="font-headline-sm text-lg text-[#003628] font-semibold">
+              Headquarters
+            </h3>
+            <div className="flex flex-col gap-2 text-sm text-[#404944]">
+              <p className="flex items-start gap-2">
+                <span className="material-symbols-outlined text-[18px] text-[#003628] mt-0.5 shrink-0">
+                  location_on
+                </span>
+                <span>No. 42, Galle Face Court, Colombo 03, Sri Lanka</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[18px] text-[#003628] shrink-0">
+                  call
+                </span>
+                <a href="tel:+94112345678" className="hover:text-[#003628] font-medium">
+                  +94 11 234 5678
+                </a>
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-[18px] text-[#003628] shrink-0">
+                  mail
+                </span>
+                <a href="mailto:bookings@lankatravellers.com" className="hover:text-[#003628] font-medium">
+                  bookings@lankatravellers.com
+                </a>
+              </p>
+            </div>
 
-            <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
-              <div className="flex items-center bg-white rounded-full p-1 border border-[#efe6e4] shadow-xs">
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email address"
-                  className="w-full bg-transparent px-3 py-1.5 text-xs text-[#1e1b1a] placeholder:text-[#717974] focus:outline-none"
-                />
-                <button
-                  type="submit"
-                  aria-label="Subscribe"
-                  className="bg-[#002217] text-white p-2 rounded-full hover:bg-[#0f382a] transition-colors flex items-center justify-center shrink-0 cursor-pointer"
-                >
-                  <span className="material-symbols-outlined text-sm">send</span>
-                </button>
+            <div className="pt-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white rounded-full shadow-xs border border-[#c0c9c3]/40">
+                <span className="material-symbols-outlined text-[16px] text-[#904d00]">military_tech</span>
+                <span className="text-xs text-[#151d1a] font-bold">
+                  TripAdvisor 5-Star Certificate of Excellence
+                </span>
               </div>
+            </div>
 
-              {subscribed ? (
-                <span className="text-[11px] text-[#006d30] font-bold">
-                  ✓ Ayubowan! You are now subscribed to Ceylon Journeys.
-                </span>
-              ) : (
-                <span className="text-[11px] text-[#717974]">
-                  We respect your privacy. Unsubscribe anytime.
-                </span>
-              )}
-            </form>
+            <div className="flex items-center gap-2 pt-1">
+              <span className="text-xs text-[#404944] uppercase tracking-wider font-bold">
+                Follow:
+              </span>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-7 h-7 rounded-full bg-[#e6f0ea] flex items-center justify-center text-[#003628] hover:bg-[#003628] hover:text-white transition-all text-xs font-bold"
+              >
+                FB
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-7 h-7 rounded-full bg-[#e6f0ea] flex items-center justify-center text-[#003628] hover:bg-[#003628] hover:text-white transition-all text-xs font-bold"
+              >
+                IG
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-7 h-7 rounded-full bg-[#e6f0ea] flex items-center justify-center text-[#003628] hover:bg-[#003628] hover:text-white transition-all text-xs font-bold"
+              >
+                YT
+              </a>
+              <a
+                href="https://tripadvisor.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-7 h-7 rounded-full bg-[#e6f0ea] flex items-center justify-center text-[#003628] hover:bg-[#003628] hover:text-white transition-all text-xs font-bold"
+              >
+                TA
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-[#efe6e4] text-xs text-[#717974] flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>© 2026 Lanka Travellers. All Rights Reserved. Explore Sri Lanka | Travel Smart | Travel Safe</p>
-          <div className="flex items-center gap-4 text-xs">
-            <button
-              type="button"
-              onClick={() => alert('Lanka Travellers Privacy Policy: We safeguard all personal data and never share contact details.')}
-              className="hover:text-[#002217] transition-colors"
-            >
-              Privacy Policy
-            </button>
-            <button
-              type="button"
-              onClick={() => alert('Lanka Travellers Terms of Service: All expeditions follow Sri Lanka Tourism Development Authority (SLTDA) guidelines.')}
-              className="hover:text-[#002217] transition-colors"
-            >
-              Terms of Service
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                const el = document.getElementById('destinations');
-                el?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="hover:text-[#002217] transition-colors"
-            >
-              Sitemap
-            </button>
+        {/* Bottom Sub-Footer */}
+        <div className="pt-6 border-t border-[#c0c9c3]/30 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#404944]">
+          <div className="flex flex-col gap-1 text-center md:text-left">
+            <p>© 2025 Lanka Travellers Ceylon Ltd. All rights reserved.</p>
+            <p className="text-[11px] text-[#707974]">
+              lankatravellers.wordpress.com — AI & WordPress Compatible Agency Template • WCAG 2.1 AA Compliant
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-1.5 font-bold text-[11px]">
+            <span className="px-2.5 py-1 bg-white rounded border border-[#c0c9c3]/30">VISA</span>
+            <span className="px-2.5 py-1 bg-white rounded border border-[#c0c9c3]/30">Mastercard</span>
+            <span className="px-2.5 py-1 bg-white rounded border border-[#c0c9c3]/30">AMEX</span>
+            <span className="px-2.5 py-1 bg-white rounded border border-[#c0c9c3]/30">LankaPay</span>
+            <span className="px-2.5 py-1 bg-white rounded border border-[#c0c9c3]/30 flex items-center gap-1 text-[#003628]">
+              <span className="material-symbols-outlined text-[13px]">lock</span>
+              Secure SSL
+            </span>
           </div>
         </div>
       </div>
